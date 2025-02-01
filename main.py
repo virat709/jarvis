@@ -1,4 +1,4 @@
-# jarvis_advanced.py
+
 import os
 import webbrowser
 import datetime
@@ -21,17 +21,15 @@ class JARVIS:
         self.command_queue = Queue()
         self.reminders = []
         self.last_command_time = time.time()
-        
-        # Configure voice engine
+
         self.engine.setProperty('rate', 180)
         self.engine.setProperty('voice', self.engine.getProperty('voices')[1].id)
 
-        # API configurations
+
         self.openweather_api_key = os.getenv("OPENWEATHER_API_KEY")
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         self.news_api_key = os.getenv("NEWSAPI_API_KEY")
 
-        # Initialize background thread
         self.background_thread = threading.Thread(target=self._background_tasks)
         self.background_thread.daemon = True
         self.background_thread.start()
@@ -72,7 +70,6 @@ class JARVIS:
         self.last_command_time = time.time()
         print(f"Processing command: {command}")
 
-        # Basic commands
         if "open" in command:
             sites = {
                 "google": "https://google.com",
